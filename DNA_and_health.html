@@ -1,0 +1,537 @@
+<!--
+ =========================================================
+* Black Dashboard PRO - v1.1.1
+=========================================================
+
+* Product Page: https://themes.getbootstrap.com/product/black-dashboard-pro-premium-bootstrap-4-admin/
+* Copyright 2019 Creative Tim (https://www.creative-tim.com)
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
+  <title>
+    DNA AND HEALTH
+  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <!-- Nucleo Icons -->
+  <link href="./assets/css/nucleo-icons.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link href="mycss.css" rel="stylesheet" />
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script>
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawAllSheets);
+
+    function drawAllSheets() {
+      drawSheetName("chromosome", "SELECT A, F, G", Variants1ResponseHandler);
+      drawSheetName("chromosome", "SELECT I, J", drugsGenesResponseHandler);
+    }
+
+    function drawSheetName(sheetName, query, responseHandler) {
+      var queryString = encodeURIComponent(query);
+      var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1s3B7v2sc1TxUHCPEl5CR2L8m3GnPYhfcWjMQd2BsG1M/edit?usp=sharing'
+        + sheetName + "&headers=1&tq=" + queryString); //Query
+      query.send(responseHandler);
+    } //drawSheetName
+
+    function checkError(response) {
+      if (response.isError()) {
+        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+        return;
+      }
+    }//check error
+
+    function Variants1ResponseHandler(response) {
+      var data = response.getDataTable();
+      var chart = new google.visualization.ColumnChart(document.getElementById("variants1"));
+
+      var options = {
+        height: 800,
+        isStacked: true,
+        backgroundColor: "#1e1e2f",
+        colors: ["#FF1E4E", "#69b3a2"],
+        legend: {
+          textStyle: { color: "white" }
+        },
+        hAxis: {
+          textStyle: { color: "white" },
+          gridlines: { color: "#1e1e2f" },
+        },
+        vAxis: {
+          viewWindow: {
+            max: 17000
+          },
+          textStyle: { color: "white" },
+          gridlines: { color: "#1e1e2f" },
+        },
+      };
+
+      chart.draw(data, options);
+    }
+    google.charts.load('current', { 'packages': ['table'] });
+
+    function drugsGenesResponseHandler(response) {
+      var data = response.getDataTable();
+      var chart = new google.visualization.Table(document.getElementById("drug_gene"));
+
+      var options = {
+        width: "100%",
+      };
+
+      chart.draw(data, options);
+    }
+
+  </script>
+
+</head>
+
+<body class="sidebar-mini ">
+  <div class="wrapper">
+    <div class="navbar-minimize-fixed">
+      <button class="minimize-sidebar btn btn-link btn-just-icon">
+        <i class="tim-icons icon-align-center visible-on-sidebar-regular text-muted"></i>
+        <i class="tim-icons icon-bullet-list-67 visible-on-sidebar-mini text-muted"></i>
+      </button>
+    </div>
+    <div class="sidebar">
+      <div class="sidebar-wrapper">
+
+        <ul class="nav list-unstyled ">
+          <li class="active">
+            <a href="index.html">
+              <i class="tim-icons icon-atom"></i>
+              <p>Home</p>
+            </a>
+          </li>
+          <li class="active">
+            <a href="/your_genome101.html">
+              <i class="tim-icons icon-atom"></i>
+              <p>Your Genome 101</p>
+            </a>
+          </li>
+          <li class="active">
+            <a href="/DNA_and_health.html">
+              <i class="tim-icons icon-atom"></i>
+              <p>DNA and Health</p>
+            </a>
+          </li>
+          <li class="active">
+            <a href="/precision_medicine.html">
+              <i class="tim-icons icon-atom"></i>
+              <p>Path to Precision Medicine</p>
+            </a>
+          </li>
+          <li class="active">
+            <a href="/data.html">
+              <i class="tim-icons icon-atom"></i>
+              <p>Data</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <div class="navbar-minimize d-inline">
+              <button class="minimize-sidebar btn btn-link btn-just-icon" rel="tooltip"
+                data-original-title="Sidebar toggle" data-placement="right">
+                <i class="tim-icons icon-align-center visible-on-sidebar-regular"></i>
+                <i class="tim-icons icon-bullet-list-67 visible-on-sidebar-mini"></i>
+              </button>
+            </div>
+            <div class="navbar-toggle d-inline">
+              <button type="button" class="navbar-toggler">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </button>
+            </div>
+            <a class="navbar-brand" href="javascript:void(0)"> DNA AND HEALTH </a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navigation">
+
+          </div>
+        </div>
+      </nav>
+      <div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="SEARCH">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="tim-icons icon-simple-remove"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Navbar -->
+      <div class="content">
+        <!-- Your content here -->
+        <div class="container-fluid" style="padding-top: 25px; max-width: 1600px !important;">
+          <div id="" style="padding-bottom: 60px;">
+            <div class="row">
+              <div class="col-md-12">
+                <h1
+                  style="background: -webkit-linear-gradient(#69B35A, #333); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                  DNA AND HEALTH</h1>
+                <p>Genetic variants come in many flavors: they can span one nucleotide or whole parts of chromosomes;
+                  they can
+                  manifest as the result of our environment (often known as mutations) or be inherited from our parents;
+                  they can be harmless
+                  or detrimental to our health. Unfortunately, today we are lacking unrestanding of most variations
+                  appearening in our genomes.
+                  Only about 0.03% of observed variants have been specified as benign or harmful; the rest are generally
+                  termed as "unknown",
+                  "uncertain", "likely benign", or "likely pathogenic". See simple animation below which shows a rough
+                  proportion of known to unknown variants.</p>
+
+                <button class="btn" onclick="show()">Show</button>
+
+                <script>
+                  function show() {
+                    var x = document.getElementById("known_unknown");
+                    if (x.style.display === "block") {
+                      x.style.display = "none";
+                    } else {
+                      x.style.display = "block";
+                    }
+                  }
+                </script>
+
+                <div id="known_unknown" style="display: none;">
+                  <button class="btn" onclick="hide()">Hide</button>
+
+                  <script>
+                    function hide() {
+                      var x = document.getElementById("known_unknown");
+                      if (x.style.display === "none") {
+                        x.style.display = "block";
+                      } else {
+                        x.style.display = "none";
+                      }
+                    }
+                  </script>
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div id="vis"></div>
+
+
+                      <script src="https://d3js.org/d3.v5.js"></script>
+                      <script>
+
+                        var svgContainer = d3.select("#vis").append("svg")
+                          .attr("width", 800)
+                          .attr("height", 800);
+
+
+                        //Draw the Circle
+                        var circle = svgContainer.append("circle")
+                          .attr("cx", 400)
+                          .attr("cy", 400)
+                          .attr("r", .1)
+                          .style("fill", "#69b3a2")
+                          .attr('fill-opacity', 0.8);
+
+
+
+                        circle
+                          .transition()
+                          .delay(1500)
+                          .duration(15000)
+                          .attr('fill-opacity', 2)
+                          .style("fill", "#69b3a2")
+                          .style("stroke", "red")
+                          .attr('r', 370);
+                        var svg = d3.select("body").append("svg")
+                          .attr("width", 500)
+                          .attr("height", 300);
+
+
+
+                      </script>
+                    </div> <!-- grid -->
+                    <div class="col-md-4">
+                      <p>The initial size of the circle represent the extent of our definitive knowledge about observed
+                        variations.
+                        It is intentionally difficult to gauge the initial size (note that it is smaller than the period
+                        at the end of this
+                        sentence). </p>
+                      <h3>The ratio of known to unknown variants is 99.973% to 0.0269% </h3>
+
+                      </p>
+
+                    </div> <!-- grid -->
+                  </div> <!-- grid -->
+                </div>
+
+              </div>
+              <!--known_unknown-->
+
+            </div> <!-- grid -->
+          </div> <!-- grid -->
+
+          <div class="row">
+            <div class="col-md-12">
+
+              <p> Researchers have identified a total of 175,675 genetic variants to be either benign (89,849 variants)
+                or pathogenic (85,826 variants).
+                The chart below shows the breakdown by chromosome. </p> <br>
+
+
+            </div> <!-- grid -->
+          </div> <!-- grid -->
+          <div id="variants1" style="border: thin solid #ffffffcc; margin-bottom: 120px;"></div>
+
+
+          <div class="row">
+
+            <div class="col-md-6">
+              <h1
+                style="background: -webkit-linear-gradient(#69B35A, #333); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                THE NETWORK OF NETWORKS</h1>
+              <p>What is important to note is that regardless of whether the effect of the variant is pathogenic of
+                benign,
+                it will almost always alter the function of the containing element - a gene, for example. The impact of
+                this becomes
+                apparent when we learn just how interconnected all DNA elements are. As mentioned earlier, coding for
+                proteins is only one of many
+                functions of the DNA; many of its elements fulfil a regulatory purpose. For example, some genes regulate
+                the function of other genes, by either turning them on or off, or altering the amount of a certain
+                protein produced by that gene.
+                As an oversimplified example imagine this: you have a gene responsible for making your pancreas produce
+                insulin. Imagine too, that
+                you have aquired a mutation in that gene which makes it dysfunctional. Lo and behold, your pancreas
+                don't
+                know when and/or how to produce
+                insulin: either too little is secreted (enter diabetes), or too much (this could cause hypoglycemia).
+                This seems simple enough - deal with the
+                said mutation, alleviate the symptoms. </p>
+              <p>Unfortunately, there can be thousands to millions DNA elements far outside of this gene region which
+                can cause it to malfunction.
+                So you might find unstable insulin levels even when the insulin-coding gene is perfectly typical. And
+                now you have millions building
+                blocks to examine, hoping to find where the offending nucleotide sequence resides.</p>
+              <p>The chart on the right shows only a few interactions of 5 of the most studied genes (
+                <a href="https://www.ncbi.nlm.nih.gov/gene/7157">TP53</a>,
+                <a href="https://www.ncbi.nlm.nih.gov/gene/7124">TNF</a>,
+                <a href="https://www.ncbi.nlm.nih.gov/gene/1956">EGFR</a>,
+                <a href="https://www.ncbi.nlm.nih.gov/gene/7422">VEGFA</a>,
+                and <a href="https://www.ncbi.nlm.nih.gov/gene/348">APOE</a>)
+                Note that the true number of known interactions for these genes is between 83 (for VEGFA) and over 370
+                (for EGFR).
+              </p>
+            </div> <!-- grid -->
+
+
+
+            <div class="col-md-6">
+              <div style="border: thin solid #ffffffcc">
+
+                <div id="my_dataviz"></div>
+
+                <script src="https://d3js.org/d3.v4.js"></script>
+                <script>
+                  // set the dimensions and margins of the graph
+                  var margin = { top: 20, right: 30, bottom: 20, left: 10 },
+                    width = 700 - margin.left - margin.right,
+                    height = 300 - margin.top - margin.bottom;
+
+                  // append the svg object to the body of the page
+                  var svg = d3.select("#my_dataviz")
+                    .append("svg")
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                    .append("g")
+                    .attr("transform",
+                      "translate(" + margin.left + "," + margin.top + ")");
+
+                  // Read  data
+                  d3.json("interactions_node_links.json", function (data) {
+
+                    // List of node names
+                    var allNodes = data.nodes.map(function (d) { return d.name })
+
+                    // A linear scale to position the nodes on the X axis
+                    var x = d3.scalePoint()
+                      .range([0, width])
+                      .domain(allNodes)
+
+                    // circle for the nodes
+                    svg
+                      .selectAll("mynodes")
+                      .data(data.nodes)
+                      .enter()
+                      .append("circle")
+                      .attr("cx", function (d) { return (x(d.name)) })
+                      .attr("cy", height - 30)
+                      .attr("r", 8)
+                      .style("fill", "#69b3a2")
+
+                    // label
+                    svg
+                      .selectAll("mylabels")
+                      .data(data.nodes)
+                      .enter()
+                      .append("text")
+                      .attr("x", function (d) { return (x(d.name)) })
+                      .attr("y", height - 10)
+                      .text(function (d) { return (d.name) })
+                      .style("text-anchor", "middle")
+                      .attr("fill", "white")
+
+
+                    // Add links between nodes. 
+                    var idToNode = {};
+                    data.nodes.forEach(function (n) {
+                      idToNode[n.id] = n;
+                    });
+
+
+                    //   links
+                    svg
+                      .selectAll('mylinks')
+                      .data(data.links)
+                      .enter()
+                      .append('path')
+                      .attr('d', function (d) {
+                        start = x(idToNode[d.source].name)    // X position of start node on the X axis
+                        end = x(idToNode[d.target].name)      // X position of end node
+                        return ['M', start, height - 10,    // the arc starts at the coordinate x=start, y=height-30 (where the starting node is)
+                          'A',
+                          (start - end) / 2, ',',    // Next 2 lines are the coordinates of the inflexion point. Height of this point is proportional with start - end distance
+                          (start - end) / 2, 0, 0, ',',
+                          start < end ? 1 : 0, end, ',', height - 30] // We always want the arc on top. So if end is before start, putting 0 here turn the arc upside down.
+                          .join(' ');
+                      })
+                      .style("fill", "none")
+                      .attr("stroke", "white")
+
+                  })
+
+                </script>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div style="margin-top: 120px;">
+                <h1
+                  style="background: -webkit-linear-gradient(#69B35A, #333); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                  WHEN IT COMES TO HEALTH AND HEALTHCARE</h1>
+                <p>Sure there's a lot going on inside our DNA already, but the external environment - our lifestyle, the
+                  food we eat, the air we
+                  breathe, the medications we take - also cause changes to our DNA. Therefore, our lifestyle and
+                  environment are the additonal
+                  contributors to our genetic diversity. The non-hereditary skin cancer, for example, is often the
+                  result of the DNA
+                  degradation in your skin cells from the extended UV exposure.
+                </p>
+                <p>The medications and supplements we take as treatment or prevention measures often induce changes to
+                  our DNA.
+                  Taking into account the already existing variety in our genetic networks, it is almost impossible to
+                  predict the
+                  full extent of potential effects of the drug on the body. It is important to note that the gene-drug
+                  interaction
+                  works both ways. For example, a certain gene may inactivate a specific biological pathways involved in
+                  the health condidion
+                  targeted by a drug, thus inactivating the drug.
+                  Below is the table showing the 10 most prescribed drugs in the US and the genes they interact with.
+                </p>
+                <br><br>
+
+                <div id="drug_gene"></div> <br><br>
+
+                <div id="conclusion"
+                  style="border: thin solid #ffffffcc; background-image: linear-gradient(#47c784, #333);">
+                  <br>
+
+                  <p>Considering the information introduced so far, following conclusions can be drawn.</p><br> <br>
+                  <ul>
+                    <li>
+                      <p> DNA is responsible for regulating every process in a human body.</p>
+                    </li>
+                    <li>
+                      <p>Human genome is incredibly diverse. Only 0.4% variance between each person's genetic make-up
+                        is responsible for
+                        more than 7 billion drastically different phenotypes.
+                      </p>
+                    </li>
+                    <li>
+                      <p>There are over 650 million genetic variants, and over 99% of those have an effect on our
+                        health
+                        that is unknown to us.</p>
+                    </li>
+                    <li>
+                      <p>
+                        We are mostly unaware of the mechanics and effects of the interactions within gene networks.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        The unique make-up of our genomes does not only specify our health profile, but interacts
+                        robustly with medical
+                        interventions.
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!--col-->
+          </div>
+          <!--row-->
+
+        </div>
+        <!--container -->
+      </div>
+      <!--content-->
+    </div>
+  </div>
+  <!--   Core JS Files   -->
+  <script src="./assets/js/core/jquery.min.js"></script>
+  <script src="./assets/js/core/popper.min.js"></script>
+  <script src="./assets/js/core/bootstrap.min.js"></script>
+  <script src="./assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <script src="./assets/js/plugins/moment.min.js"></script>
+  <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+  <script src="./assets/js/plugins/bootstrap-switch.js"></script>
+  <!--  Plugin for Sweet Alert -->
+  <script src="./assets/js/plugins/sweetalert2.min.js"></script>
+  <!--  Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
+  <script src="./assets/js/plugins/jquery.bootstrap-wizard.js"></script>
+  <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+  <script src="./assets/js/plugins/bootstrap-selectpicker.js"></script>
+  <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+  <script src="./assets/js/plugins/bootstrap-tagsinput.js"></script>
+  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+  <script src="./assets/js/plugins/nouislider.min.js"></script>
+  <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="./assets/js/black-dashboard.min.js?v=1.1.1"></script>
+</body>
+
+</html>
